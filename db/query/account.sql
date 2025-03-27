@@ -15,3 +15,13 @@ SELECT * FROM "Accounts"
 ORDER BY id
 LIMIT $1
 OFFSET $2;
+
+-- name: UpdateAccount :one
+UPDATE "Accounts"
+set balance = $2
+WHERE id = $1
+RETURNING *;
+
+-- name: DeleteAccount :exec
+DELETE FROM "Accounts"
+WHERE id = $1;
